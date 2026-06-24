@@ -1,0 +1,52 @@
+.registro, .login {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 20px;
+    margin: 20px;
+}
+
+#registro {
+    display: flex; /*ordeno el formulario (id)*/
+    flex-direction: column;
+    gap: 5px;
+}
+
+#login {
+    display: flex; /*ordeno el form del login también por su id*/
+    flex-direction: column;
+    gap: 5px;
+}
+
+body{
+    background-color: #FF4700;
+    color: white;
+}
+
+#tituloRegistro, #tituloLogin{
+    font-weight: 700;
+    text-align: center;
+}
+
+.boton{
+    background-color: black;
+    color: white;;
+}
+
+.campoRegistro, .campoLogin{
+    display: flex;
+    flex-direction: column;
+}
+
+#loginOcultar{
+    display: none;
+}
+
+#terminoCaja{
+    display: flex;
+    flex-direction: row;
+}
+
+.errores{
+    color: rgb(227, 214, 214);
+    font:menu;
+    font-size: 14px;
+}

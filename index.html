@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parcial - Prácticas III</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <section class="registro" id="registroOcultar">
+        <h1 id="tituloRegistro">Registro de Usuario</h1>
+        <form id="registro">
+
+            <div class="campoRegistro">
+                <label for="nombre">Ingresá tu nombre</label>
+                <input type="text" id="nombre">
+                <span id="errorNombre" class="errores"></span>
+            </div>
+
+            <div class="campoRegistro">
+                <label for="apellido">Ingresá tu apellido</label>
+                <input type="text" id="apellido">
+                <span id="errorApellido" class="errores"></span>
+            </div>
+
+            <div class="campoRegistro">
+                <label for="email">Ingresá tu email</label>
+                <input type="email" id="email">
+                <span id="errorEmail" class="errores"></span>      
+            </div>
+
+            <div class="campoRegistro">
+                <label for="password">Ingresá tu contraseña</label>
+                <input type="password" id="password">
+                <span id="errorPassword" class="errores"></span>
+            </div>
+            
+            <div class="campoRegistro">
+                <label for="confirmarPassword">Confirmá tu contraseña</label>
+                <input type="password" id="confirmarPassword">
+                <span id="errorConfirmarPassword" class="errores"></span>
+            </div>
+
+            <div class="campoRegistro">
+                <label for="fechaNacimiento">Ingresá tu fecha de nacimiento</label>
+                <input type="date" id="fechaNacimiento">
+                <span id="errorFechaNacimiento" class="errores"></span>
+            </div>
+
+            <div class="campoRegistro" id="terminoCaja">
+                <label for="terminos">Aceptá los términos y condiciones</label>
+                <input type="checkbox" id="terminos">
+                <span id="errorTerminos" class="errores"></span>
+            </div>
+
+            <button class="boton" type="submit">Registrarse</button>
+            <span id="cargando"></span>
+            <span id="registroExito"></span>
+        </form>
+    </section>
+
+
+
+    <section class="login" id="loginOcultar">
+        <h1 id="tituloLogin">Login</h1>
+        <form id="login">
+
+            <div class="campoLogin">
+                <label for="emailLogin">Ingresá tu email</label>
+                <input type="email" id="emailLogin">
+                <span id="errorEmailLogin" class="errores"></span>
+            </div>
+
+            <div class="campoLogin">
+                <label for="passwordLogin">Ingresá tu contraseña</label>
+                <input type="password" id="passwordLogin">
+                <span id="errorPasswordLogin" class="errores"></span>
+            </div>
+
+            <button class="boton" type="submit">Iniciar sesión</button>
+            <span id="iniciarSesion"></span>
+            <span id="inicioExitoso"></span>
+        </form>
+    </section>
+
+    <script src="app.js"></script>
+</body>
+</html>
