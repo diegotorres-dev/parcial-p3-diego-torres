@@ -8,11 +8,11 @@ function buscarUsuarioPorEmail(email){ //Toma de parámetro un email, que es el 
     let usuariosRegistrados = localStorage.getItem("usuarios"); //Obtengo los textos guardados en LocalStorage
     let listaUsuarios = []; //Creo una lista vacía
 
-    if (usuariosRegistrados !== null){ //Si encuentra usuarios en el LocalStorage, por eso distinto de null
-        listaUsuarios = JSON.parse(usuariosRegistrados); //Transformo el JSON en un array
+    if (usuariosRegistrados !== null){ //Si encuentra usuarios (por eso distinto de null) traemelos
+        listaUsuarios = JSON.parse(usuariosRegistrados); //Transformo una cadena de texto en formato JSON en un objeto
     }
 
-    for(let i = 0; i < listaUsuarios.length; i++){ //Recorro la lista de usuarios para encontrar el email
+    for (let i = 0; i < listaUsuarios.length; i++){ //Recorro la lista de usuarios para encontrar el email
         let usuarioActual = listaUsuarios[i]; //Almaceno el usuario encontrado en "usuarioActual"
         if (usuarioActual.email === email){ //Si el email ingresado es el mismo que el 
             return usuarioActual; //Me devuelve el usuario que contiene el email
@@ -142,12 +142,12 @@ function validarTerminos(){
     return terminosValidos;
 }
 
-let usuarioEncontrado = null; //Arranca en null porque no hay usuarios encontrados por el momento
+let usuarioEncontrado = null; //Es compartida entre validarEmailLogin y validarPasswordLogin
 
 function validarEmailLogin(){
-    let emailLogin = document.getElementById("emailLogin").value
+    let emailLogin = document.getElementById("emailLogin").value //Valor del formulario en el login
     let emailValidoLogin = false;
-    usuarioEncontrado = buscarUsuarioPorEmail(emailLogin);
+    usuarioEncontrado = buscarUsuarioPorEmail(emailLogin); //Busco al usuario por el email que envió en el formulario
     if (emailLogin === ""){
         mostrarMensaje("errorEmailLogin", "Este campo es obligatorio");
     } else if (usuarioEncontrado === null){
@@ -164,10 +164,10 @@ function validarPasswordLogin(){
     let passwordLoginValido = false;
     if (passwordLogin === ""){
         mostrarMensaje("errorPasswordLogin", "Este campo es obligatorio");
-    } else if (passwordLogin !== usuarioEncontrado.password){
+    } else if (passwordLogin !== usuarioEncontrado.password){ //Compara con la contraseña del usuario obtenido de la variable global
         mostrarMensaje("errorPasswordLogin", "Email o contraseña incorrectos");
     } else {
-        mostrarMensaje("errorPasswordLogin", "")
+        mostrarMensaje("errorPasswordLogin", "");
         passwordLoginValido = true;
     }
     return passwordLoginValido;
@@ -178,7 +178,7 @@ function guardarUsuario(usuario){
     let listaUsuarios = []; //Lista vacía por defecto
 
     if (usuariosRegistrados !== null){ //Si ya hay usuarios guardados
-        listaUsuarios = JSON.parse(usuariosRegistrados); //Convierto el JSON a array
+        listaUsuarios = JSON.parse(usuariosRegistrados); //Transformo una cadena de texto en formato JSON en un objeto
     }
 
     listaUsuarios.push(usuario); //Agrego el nuevo usuario a la lista
@@ -187,11 +187,11 @@ function guardarUsuario(usuario){
 
 function fakeRequest(data) {
     return new Promise((resolve) => {
-        setTimeout(() => resolve(data), 2000);
+        setTimeout(() => resolve(data), 2000); //La promesa se resuelve al ejecutar resolve(data)
     });
 }
 
-async function registrar(event) {
+async function registrar(event) { //Función asincrónica
     event.preventDefault();
     let usuario = { //Guardo los datos del usuario en un JSON
     nombre: document.getElementById("nombre").value.trim(),
@@ -209,7 +209,7 @@ async function registrar(event) {
     let terminosValidos = validarTerminos();
     if (nombreValido && apellidoValido && emailValido && passwordValido && confirmacionValida && fechaValida && terminosValidos){
         mostrarMensaje("cargando", "Cargando...");
-        await fakeRequest();
+        await fakeRequest(); //Espera que la promesa se resuelva, sino seguiría sin esperar los dos segundos
         guardarUsuario(usuario);
         mostrarMensaje("registroExito", "Te registraste con éxito");
         setTimeout(() => {
@@ -224,7 +224,7 @@ async function login(event) {
     mostrarMensaje("iniciarSesion", "");
     if (validarEmailLogin() && validarPasswordLogin()){
         mostrarMensaje("iniciarSesion", "Iniciando sesión...")
-        await fakeRequest();
+        await fakeRequest(); //Espera que la promesa se resuelva, sino seguiría sin esperar los dos segundos
         mostrarMensaje("inicioExitoso", "¡Bienvenido " + usuarioEncontrado.nombre + " " + usuarioEncontrado.apellido + "!")
     }
 }
